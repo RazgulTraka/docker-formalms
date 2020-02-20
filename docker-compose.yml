@@ -3,7 +3,7 @@ version: '3.1'
 services:
 
   formalms:
-    image: razgultraka/formalms
+    image: razgultraka/formalms:latest
     restart: always
     ports:
       - 80:80
