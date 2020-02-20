@@ -1,6 +1,6 @@
 # docker-formalms
 
-A docker container for the e-learning platform Forma LMS
+A docker container for the e-learning platform Forma LMS based on the official php5.6-apache image.
 
 ## Getting Started
 
