@@ -1,1 +1,0 @@
-ALTER TABLE `core_org_chart_tree` ADD `associated_template` VARCHAR( 255 ) NULL;

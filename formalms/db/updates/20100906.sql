@@ -1,1 +1,0 @@
-ALTER TABLE `core_user` ADD COLUMN `privacy_policy` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 AFTER `google_id`;

@@ -1,9 +1,13 @@
 # Use the official image as a parent image
 FROM php:5.6-apache
+
 # Set the working directory
 WORKDIR /var/www/html
-# Copy the file from your host to your current location
-COPY formalms/ ./formalms/
+
+# Download latest formalms package 
+RUN \
+	curl https://netcologne.dl.sourceforge.net/project/forma/version-2.x/formalms-v2.3.0.2.zip --output formalms.zip
+	
 # Run the command inside your image filesystem
 RUN chmod -R 777 ./formalms/
 RUN docker-php-ext-configure mysqli && docker-php-ext-install mysqli
