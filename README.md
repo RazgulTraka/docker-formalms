@@ -16,8 +16,9 @@ Docker installed:
 
 A compatible SQL database:
 
-* MySQL 5.0 or higher
-* MariaDB  5.5 or higher
+* MySQL 5.0 or higher or MariaDB  5.5 or higher
+* UTF8 character set
+* MySQL strict mode disabled
 
 ### Usage
 
@@ -33,9 +34,10 @@ Then you can go to `http://localhost/formalms/install` or `http://host-ip/formal
 #### ... via docker stack deploy or docker-compose
 
 This will install both Forma LMS and a MySQL database
+You can use [the forma.cnf file in this repository](https://github.com/RazgulTraka/docker-formalms/blob/master/config/forma.cnf) to set both character set to utf8 and disable strict mode at creation time, otherwise you'll have to do it manually.
 
 ```shell
-version: '3.1'
+version: '3'
 
 services:
 
@@ -55,7 +57,7 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - db:/var/lib/mysql
-      - ./config:/etc/mysql/conf.d
+#     - /path/to/config/directory:/etc/mysql/conf.d #edit and uncomment this line if you're using the .cnf file
 
 volumes:
   db:
@@ -64,7 +66,7 @@ volumes:
 As with `docker run` got to the web page `http://localhost/formalms/install` or `http://host-ip/formalms/install` to complete the installation.
 
 With this compose file you can just set `db` as the database host during installation and `formalms` as database name, user and password.
-The database is not exposed outside of the stack, but you should change the database parameters to be on the safer side.
+The database is not exposed outside of the stack, but you can always change the database parameters to be on the safer side.
 
 ## Built With
 
