@@ -1,0 +1,10 @@
+VERSION = 2.3.0.2
+LS=1
+CHECKSUM = 5daa1266c199843f1a9ba41526b0606a053f13391ae03da674480ca0a53b65c2
+NS = nicholaswilde
+
+# Run
+PORTS = -p 8080:80
+
+# Build
+PLATFORMS = --platform linux/arm64,linux/arm/v7,linux/amd64

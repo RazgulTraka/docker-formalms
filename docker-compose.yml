@@ -1,12 +1,18 @@
+---
 version: '3.1'
 
 services:
 
   formalms:
-    image: razgultraka/formalms:latest
+    image: nicholaswilde/formalms:2.3.0.2-ls1
     restart: always
     ports:
-      - 80:80
+      - 8080:80
+    volumes:
+      - formalms:/var/www/html/formalms
+    environment:
+      - PUID=1001
+      - GUID=1001
 
   db:
     image: mysql:5.7
@@ -22,3 +28,4 @@ services:
 
 volumes:
   db:
+  formalms:
