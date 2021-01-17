@@ -1,18 +1,20 @@
-# docker-formalms
+# Docker Forma LMS
+[![Docker Image Version (latest by date)](https://img.shields.io/docker/v/nicholaswilde/formalms)](https://hub.docker.com/r/nicholaswilde/formalms)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nicholaswilde/formalms)](https://hub.docker.com/r/nicholaswilde/formalms)
+[![GitHub](https://img.shields.io/github/license/nicholaswilde/docker-formalms)](./LICENSE)
+[![hadolint](https://github.com/nicholaswilde/docker-cryptpad/workflows/hadolint/badge.svg?branch=main)](https://github.com/nicholaswilde/docker-formalms/actions?query=workflow%3Ahadolint)
+[![yamllint](https://github.com/nicholaswilde/docker-cryptpad/workflows/yamllint/badge.svg?branch=main)](https://github.com/nicholaswilde/docker-formalms/actions?query=workflow%3Ayamllint)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
-A docker container for the e-learning platform Forma LMS based on the official php:5.6-apache image.
+A docker container for the e-learning platform [Forma LMS](https://www.formalms.org/) based on the official php:7.0-apache image.
 
-## Getting Started
+## Requirements
 
-### Prerequisites
+- [buildx](https://docs.docker.com/engine/reference/commandline/buildx/)
+
+## Prerequisites
 
 In order to run this container you'll need: 
-
-Docker installed:
-
-* [Windows](https://docs.docker.com/windows/started)
-* [OS X](https://docs.docker.com/mac/started/)
-* [Linux](https://docs.docker.com/linux/started/)
 
 A compatible SQL database:
 
@@ -20,21 +22,21 @@ A compatible SQL database:
 * UTF8 character set
 * MySQL strict mode disabled
 
-### Usage
+## Usage
 
-#### ... via docker run
+### docker cli
 
 The web page runs on the default http port
 
 ```shell
-docker run -p 80:80 razgultraka/formalms
+docker run -p 8080:80 nicholaswilde/formalms
 ```
-Then you can go to `http://localhost/formalms/install` or `http://host-ip/formalms/install` to complete the installation.
+Then you can go to `http://localhost:8080/install` to complete the installation.
 
-#### ... via docker stack deploy or docker-compose
+### docker-compose
 
 This will install both Forma LMS and a MySQL database
-You can use [the forma.cnf file in this repository](https://github.com/RazgulTraka/docker-formalms/blob/master/config/forma.cnf) to set both character set to utf8 and disable strict mode at creation time, otherwise you'll have to do it manually.
+You can use [the forma.cnf file in this repository](https://github.com/nicholaswilde/docker-formalms/blob/master/config/forma.cnf) to set both character set to utf8 and disable strict mode at creation time, otherwise you'll have to do it manually.
 
 ```shell
 version: '3'
@@ -42,10 +44,10 @@ version: '3'
 services:
 
   formalms:
-    image: razgultraka/formalms:latest
+    image: nicholaswilde/formalms:latest
     restart: always
     ports:
-      - 80:80
+      - 8080:80
       
   db:
     image: mysql:5.7
@@ -63,24 +65,34 @@ volumes:
   db:
 ```
 
-As with `docker run` got to the web page `http://localhost/formalms/install` or `http://host-ip/formalms/install` to complete the installation.
+As with `docker run` got to the web page `http://localhost:8080/install` to complete the installation.
 
 With this compose file you can just set `db` as the database host during installation and `formalms` as database name, user and password.
 The database is not exposed outside of the stack, but you can always change the database parameters to be on the safer side.
 
+## Pre-commit hook
+
+If you want to automatically generate `README.md` files with a pre-commit hook, make sure you
+[install the pre-commit binary](https://pre-commit.com/#install), and add a [.pre-commit-config.yaml file](./.pre-commit-config.yaml)
+to your project. Then run:
+
+```bash
+pre-commit install
+pre-commit install-hooks
+```
+Currently, this only works on `amd64` systems.
+
 ## Built With
 
 * Forma LMS v2.3.0.2
-* PHP v5.6
+* PHP v7.0
 * MySQL v5.7
-
-## Find Us
-
-* [GitHub](https://github.com/RazgulTraka)
 
 ## Authors
 
-* **Lorenzo Dallagà** - *Initial work* - [RazgulTraka](https://github.com/RazgulTraka)
+* **Lorenzo Dallagà** - *Initial work*
+* [RazgulTraka](https://github.com/RazgulTraka)
+* [Nicholas Wilde](https://github.com/nicholaswilde)
 
 ## Acknowledgments
 
