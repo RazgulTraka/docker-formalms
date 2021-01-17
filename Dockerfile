@@ -23,7 +23,6 @@ FROM php:5.6-apache
 ENV APACHE_DOCUMENT_ROOT /app
 WORKDIR /app
 COPY --from=base /formalms .
-COPY entrypoint.sh .
 RUN \
   echo "**** install packages ****" && \
   apt-get update && \
@@ -39,4 +38,3 @@ RUN \
   chown www-data:www-data -R /app
 VOLUME /app
 EXPOSE 80 443
-# ENTRYPOINT ["/bin/sh","/app/entrypoint.sh"]
