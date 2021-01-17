@@ -48,6 +48,8 @@ services:
     restart: always
     ports:
       - 8080:80
+    environment:
+      - TZ: America/Los_Angeles
       
   db:
     image: mysql:5.7
@@ -88,12 +90,17 @@ Currently, this only works on `amd64` systems.
 * PHP v7.0
 * MySQL v5.7
 
+
+## Acknowledgments
+
+* [The Forma LMS project](https://www.formalms.org/)
+
+## License
+
+[Apache 2.0 License](./LICENSE)
+
 ## Authors
 
 * **Lorenzo Dallagà** - *Initial work*
 * [RazgulTraka](https://github.com/RazgulTraka)
 * [Nicholas Wilde](https://github.com/nicholaswilde)
-
-## Acknowledgments
-
-* [The Forma LMS project](https://www.formalms.org/)
