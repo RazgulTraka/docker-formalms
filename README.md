@@ -8,11 +8,7 @@
 
 A docker container for the e-learning platform [Forma LMS](https://www.formalms.org/) based on the official php:7.0-apache image.
 
-## Requirements
-
-- [buildx](https://docs.docker.com/engine/reference/commandline/buildx/)
-
-## Prerequisites
+## Dependencies
 
 In order to run this container you'll need: 
 
@@ -33,43 +29,6 @@ docker run -p 8080:80 nicholaswilde/formalms
 ```
 Then you can go to `http://localhost:8080/install` to complete the installation.
 
-### docker-compose
-
-This will install both Forma LMS and a MySQL database
-You can use [the forma.cnf file in this repository](https://github.com/nicholaswilde/docker-formalms/blob/master/config/forma.cnf) to set both character set to utf8 and disable strict mode at creation time, otherwise you'll have to do it manually.
-
-```shell
-version: '3'
-
-services:
-
-  formalms:
-    image: nicholaswilde/formalms:latest
-    restart: always
-    ports:
-      - 8080:80
-    environment:
-      - TZ: America/Los_Angeles
-    volumes:
-      - app:/app
-      
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_DATABASE: formalms
-      MYSQL_USER: formalms
-      MYSQL_PASSWORD: formalms
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    volumes:
-      - db:/var/lib/mysql
-#     - /path/to/config/directory:/etc/mysql/conf.d #edit and uncomment this line if you're using the .cnf file
-
-volumes:
-  db:
-  app:
-```
-
 ### Volume
 
 The default UID and GID for the `app` volume is `www-data:www-data` or `33:33`
@@ -78,6 +37,8 @@ The default UID and GID for the `app` volume is `www-data:www-data` or `33:33`
 
 See [docker-compose.yaml](./docker-compose.yaml).
 
+This will install both Forma LMS and a MySQL database
+You can use [the forma.cnf file in this repository](https://github.com/nicholaswilde/docker-formalms/blob/master/config/forma.cnf) to set both character set to utf8 and disable strict mode at creation time, otherwise you'll have to do it manually.
 
 As with `docker run` got to the web page `http://localhost:8080/install` to complete the installation.
 
@@ -109,7 +70,6 @@ Currently, this only works on `amd64` systems.
 * Forma LMS v2.3.0.2
 * PHP v7.0
 * MySQL v5.7
-
 
 ## Acknowledgments
 
