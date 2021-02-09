@@ -4,7 +4,7 @@ version: '3.1'
 services:
 
   formalms:
-    image: nicholaswilde/formalms:2.3.0.2-ls1
+    image: nicholaswilde/formalms
     restart: always
     ports:
       - 8080:80
