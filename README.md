@@ -70,14 +70,27 @@ volumes:
   app:
 ```
 
+### Volume
+
+The default UID and GID for the `app` volume is `www-data:www-data` or `33:33`
+
+### docker-compose
+
+See [docker-compose.yaml](./docker-compose.yaml).
+
+
 As with `docker run` got to the web page `http://localhost:8080/install` to complete the installation.
 
 With this compose file you can just set `db` as the database host during installation and `formalms` as database name, user and password.
 The database is not exposed outside of the stack, but you can always change the database parameters to be on the safer side.
 
-### Volume
+## Development
 
-The default UID and GID for the `app` volume is `www-data:www-data` or `33:33`
+See [Wiki](https://github.com/nicholaswilde/docker-template/wiki/Development).
+
+## Troubleshooting
+
+See [Wiki](https://github.com/nicholaswilde/docker-template/wiki/Troubleshooting).
 
 ## Pre-commit hook
 
