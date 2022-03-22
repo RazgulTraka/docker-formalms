@@ -70,7 +70,7 @@ The database is not exposed outside of the stack, but you can always change the 
 
 ## Built With
 
-* Forma LMS v2.3.0.2
+* Forma LMS v2.4.5
 * PHP v5.6
 * MySQL v5.7
 
