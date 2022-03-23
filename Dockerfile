@@ -7,7 +7,7 @@ WORKDIR /var/www/html
 # Download latest formalms package 
 RUN \
 	apt update && \
-	apt install -y unzip wget && \
+	apt install -y unzip wget ca-certificates && \
 	docker-php-ext-configure mysqli && \
 	docker-php-ext-install mysqli && \
 	wget -O formalms.zip https://sourceforge.net/projects/forma/files/version-2.x/formalms-v2.4.5.zip/download && \
